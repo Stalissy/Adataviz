@@ -11,5 +11,5 @@ export const readAPI = async (limit: number, offset: number) => {
   const varFetch: Response = await fetch(url);
   const jsonFetch: any = await varFetch.json();
 
-  console.log(jsonFetch);
+  return jsonFetch;
 };

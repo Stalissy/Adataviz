@@ -1,0 +1,305 @@
+/* ============================================================
+   style.css — Gloire à Hidalgo
+   Thème : Magazine parisien — élégant, éditorial, raffiné
+   ============================================================ */
+
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Cormorant+Garamond:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap");
+
+/* ── Variables ─────────────────────────────────────────────── */
+:root {
+  --noir: #0e0e0e;
+  --blanc: #f5f2ee;
+  --rouge: #c0392b;
+  --rouge-clair: #e8493a;
+  --gris: #7a7570;
+  --gris-clair: #d8d4ce;
+  --or: #b8975a;
+
+  --font-titre: "Playfair Display", Georgia, serif;
+  --font-corps: "Cormorant Garamond", Georgia, serif;
+  --font-mono: "DM Mono", monospace;
+
+  --gap: 2rem;
+  --radius: 2px;
+  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── Reset & base ───────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--blanc);
+  color: var(--noir);
+  font-family: var(--font-corps);
+  font-size: 18px;
+  line-height: 1.7;
+  min-height: 100vh;
+}
+
+/* ── Header ─────────────────────────────────────────────────── */
+header {
+  position: relative;
+  background-color: var(--noir);
+  color: var(--blanc);
+  padding: 3.5rem 4rem 2.5rem;
+  border-bottom: 3px solid var(--rouge);
+  overflow: hidden;
+}
+
+header::before {
+  content: "PARIS";
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  font-family: var(--font-titre);
+  font-size: clamp(5rem, 15vw, 12rem);
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.04);
+  letter-spacing: -0.02em;
+  pointer-events: none;
+  user-select: none;
+  line-height: 1;
+}
+
+header h1 {
+  font-family: var(--font-titre);
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  font-weight: 900;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+  margin-bottom: 0.4rem;
+}
+
+header h1 span {
+  color: var(--rouge);
+}
+
+header h3 {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 300;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gris-clair);
+}
+
+/* Ligne décorative */
+header::after {
+  content: "";
+  display: block;
+  width: 3rem;
+  height: 1px;
+  background: var(--rouge);
+  margin-top: 1.5rem;
+}
+
+/* ── Main / grille ──────────────────────────────────────────── */
+main#main {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: var(--gap);
+  padding: 3rem 4rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* ── Cards ──────────────────────────────────────────────────── */
+.card {
+  background: #fff;
+  border: 1px solid var(--gris-clair);
+  border-top: 3px solid var(--noir);
+  padding: 1.8rem 1.6rem 1.6rem;
+  position: relative;
+  transition:
+    transform var(--transition),
+    box-shadow var(--transition),
+    border-top-color var(--transition);
+  cursor: default;
+}
+
+.card::before {
+  content: attr(class);
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gris);
+  display: block;
+  margin-bottom: 0.8rem;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+  border-top-color: var(--rouge);
+}
+
+.card:hover .title {
+  color: var(--rouge);
+}
+
+/* ── Catégories colorées ────────────────────────────────────── */
+.card.Mobilités {
+  border-top-color: #2980b9;
+}
+.card.Mobilités:hover {
+  border-top-color: #1a6fa8;
+}
+.card.Logement {
+  border-top-color: #27ae60;
+}
+.card.Logement:hover {
+  border-top-color: #1e8e4e;
+}
+.card.Espaces\ verts {
+  border-top-color: #16a085;
+}
+.card.Culture {
+  border-top-color: var(--or);
+}
+.card.Économie {
+  border-top-color: var(--rouge);
+}
+.card.Sécurité {
+  border-top-color: #8e44ad;
+}
+
+/* ── Titre de carte ─────────────────────────────────────────── */
+.card .title {
+  font-family: var(--font-titre);
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--noir);
+  margin-bottom: 0.8rem;
+  transition: color var(--transition);
+}
+
+/* ── Corps de carte ─────────────────────────────────────────── */
+.card .corp {
+  font-family: var(--font-corps);
+  font-size: 0.95rem;
+  font-weight: 300;
+  color: var(--gris);
+  line-height: 1.65;
+
+  /* Tronquer à 4 lignes */
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ── Séparateur décoratif entre titre et corps ──────────────── */
+.card .title::after {
+  content: "";
+  display: block;
+  width: 2rem;
+  height: 1px;
+  background: var(--gris-clair);
+  margin-top: 0.7rem;
+}
+
+/* ── Footer ─────────────────────────────────────────────────── */
+footer {
+  margin-top: 4rem;
+  padding: 2rem 4rem;
+  border-top: 1px solid var(--gris-clair);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+footer::before {
+  content: "© Gloire à Hidalgo — Données : opendata.paris.fr";
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  color: var(--gris);
+}
+
+footer::after {
+  content: "🗼";
+  font-size: 1.2rem;
+}
+
+/* ── Animation d'entrée des cards ───────────────────────────── */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card {
+  animation: fadeUp 0.5s ease both;
+}
+
+/* Stagger via nth-child */
+.card:nth-child(1) {
+  animation-delay: 0.05s;
+}
+.card:nth-child(2) {
+  animation-delay: 0.1s;
+}
+.card:nth-child(3) {
+  animation-delay: 0.15s;
+}
+.card:nth-child(4) {
+  animation-delay: 0.2s;
+}
+.card:nth-child(5) {
+  animation-delay: 0.25s;
+}
+.card:nth-child(6) {
+  animation-delay: 0.3s;
+}
+.card:nth-child(7) {
+  animation-delay: 0.35s;
+}
+.card:nth-child(8) {
+  animation-delay: 0.4s;
+}
+.card:nth-child(9) {
+  animation-delay: 0.45s;
+}
+.card:nth-child(10) {
+  animation-delay: 0.5s;
+}
+.card:nth-child(n + 11) {
+  animation-delay: 0.55s;
+}
+
+/* ── Responsive ─────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  header {
+    padding: 2.5rem 1.5rem 2rem;
+  }
+
+  main#main {
+    grid-template-columns: 1fr;
+    padding: 2rem 1.5rem;
+    gap: 1.2rem;
+  }
+
+  footer {
+    padding: 1.5rem;
+    flex-direction: column;
+    text-align: center;
+  }
+}
