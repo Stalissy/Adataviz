@@ -67,6 +67,10 @@ main {
     transform 0.15s ease,
     box-shadow 0.15s ease;
   border-top: 4px solid var(--primary);
+
+  /* 👇 FLEXBOX */
+  display: flex;
+  flex-direction: column;
 }
 
 .card:hover {
@@ -145,4 +149,10 @@ footer {
   color: var(--text-muted);
   border-top: 1px solid var(--border);
   margin-top: 2rem;
+}
+
+/* 👇 BOUTON EN BAS + CENTRÉ */
+.see_more {
+  margin-top: auto; /* pousse en bas */
+  align-self: center; /* centre horizontalement */
 }

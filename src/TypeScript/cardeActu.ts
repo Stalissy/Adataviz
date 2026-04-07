@@ -19,6 +19,7 @@ const creatCard = (obj: any) => {
     <section id="${newId}" class="card ${type}">
       <div id="${newTitleId}" class="title">${title}</div>
       <div id="${newCorpId}" class="corp">${corp}</div>
+      <button class="button outline see_more" id="${newId + "_see_more"}">Voir plus</button>
     </section>
   `;
 };

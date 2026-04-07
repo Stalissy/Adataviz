@@ -3,6 +3,8 @@ import { addCard } from "./TypeScript/cardeActu";
 import { DOM } from "./TypeScript/DOM";
 import { readPageButton } from "./TypeScript/nextPageButton";
 
+const nbCardPerPage: number = 15;
+
 DOM("app");
-await addCard(9, 0);
-await readPageButton();
+await addCard(nbCardPerPage, 0);
+await readPageButton(nbCardPerPage);
