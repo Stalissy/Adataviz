@@ -1,0 +1,38 @@
+.button {
+  background-color: var(--primary);
+  color: #ffffff;
+  border: none;
+  border-radius: var(--radius);
+  padding: 0.6rem 1.4rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition:
+    background-color 0.15s ease,
+    transform 0.1s ease;
+}
+
+.button:hover {
+  background-color: var(--primary-dark);
+}
+
+.button:active {
+  transform: scale(0.97);
+}
+
+.button.outline {
+  background-color: transparent;
+  color: var(--primary);
+  border: 1.5px solid var(--primary);
+}
+
+.button.outline:hover {
+  background-color: var(--primary);
+  color: #ffffff;
+}
+
+#buttonPage {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}

@@ -1,0 +1,38 @@
+#article {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.card {
+  background-color: var(--bg-card);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  box-shadow: var(--shadow);
+  border-top: 4px solid var(--primary);
+
+  display: flex;
+  flex-direction: column;
+}
+
+.card .title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.6rem;
+  color: var(--text);
+  line-height: 1.4;
+}
+
+.card .corp {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+
+  margin-bottom: 0.6rem;
+}
+
+.see-more {
+  margin-top: auto;
+  align-self: center;
+}

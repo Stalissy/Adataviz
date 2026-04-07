@@ -1,9 +1,9 @@
-import "./CSS/style.css";
-import { addCard } from "./TypeScript/cardeActu";
-import { DOM } from "./TypeScript/DOM";
-import { readPageButton } from "./TypeScript/nextPageButton";
+import "./style/style.css";
+import { addCard } from "./script/cardeActu";
+import { DOM } from "./script/DOM";
+import { readPageButton } from "./script/nextPageButton";
 
-const nbCardPerPage: number = 15;
+const nbCardPerPage: number = 12;
 
 DOM("app");
 await addCard(nbCardPerPage, 0);

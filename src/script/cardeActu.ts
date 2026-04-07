@@ -18,8 +18,8 @@ const creatCard = (obj: any) => {
   htmlArticle.innerHTML += `
     <section id="${newId}" class="card ${type}">
       <div id="${newTitleId}" class="title">${title}</div>
-      <div id="${newCorpId}" class="corp">${corp}</div>
-      <button class="button outline see_more" id="${newId + "_see_more"}">Voir plus</button>
+      <div id="${newCorpId}" class="corp max_line">${corp}</div>
+      <button class="button outline see-more" id="${newId + "_see_more"}">Voir plus</button>
     </section>
   `;
 };
