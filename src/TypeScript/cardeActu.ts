@@ -14,8 +14,8 @@ const creatCard = (obj: any) => {
   const newTitleId: string = newId + "_title";
   const newCorpId: string = newId + "_corp";
 
-  const htmlMain: any = document.getElementById("main");
-  htmlMain.innerHTML += `
+  const htmlArticle: any = document.getElementById("article");
+  htmlArticle.innerHTML += `
     <section id="${newId}" class="card ${type}">
       <div id="${newTitleId}" class="title">${title}</div>
       <div id="${newCorpId}" class="corp">${corp}</div>
@@ -25,6 +25,9 @@ const creatCard = (obj: any) => {
 
 export const addCard = async (limit: number, offset: number) => {
   const jsonAPI: any = await extracNews(limit, offset);
+  const htmlArticle: any = document.getElementById("article");
+
+  htmlArticle.innerHTML = "";
 
   jsonAPI.forEach((info: any) => {
     creatCard(info);
