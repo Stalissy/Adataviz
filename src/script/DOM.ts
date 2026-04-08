@@ -9,7 +9,13 @@ export const DOM = (id: string) => {
       <div id="article"></div>
       <div id="buttonPage">
         <div class="pagination">
-          <button class="button outline" id="previousPageButton">← Page précédente</button>
+          <button class="button outline btnPage" id="previousPageButton" style="display: none">← Page précédente</button>
+          <button class="button outline btnPage" id="return-page-1" style="display: none">1</button>
+          <button class="button outline btnPage" id="page-2" style="display: none">-1</button>
+          <button class="button outline btnPage" id="page-1" style="display: none">0</button>
+          <button class="button btnPage" id="actual-page">1</button>
+          <button class="button outline btnPage" id="page+1">2</button>
+          <button class="button outline btnPage" id="page+2">3</button>
           <button class="button" id="nextPageButton">Page suivante →</button>
         </div>
       </div>
