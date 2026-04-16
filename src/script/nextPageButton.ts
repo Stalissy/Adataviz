@@ -1,4 +1,5 @@
-import { addCard } from "./cardActu";
+import { addCard, nbPage } from "./cardActu";
+import { reserchText } from "./searchBar";
 
 const nextPage = async (
   pageIndex: number,
@@ -6,13 +7,13 @@ const nextPage = async (
   addPage: number,
 ): Promise<number> => {
   const newPageIndex = pageIndex + addPage;
-  await addCard(nbCardPerPage, newPageIndex);
+  await addCard(nbCardPerPage, newPageIndex, reserchText);
   return newPageIndex;
 };
 
-export const readPageButton = (nbCardPerPage: number): void => {
-  let pageIndex = 0; // 👈 interne (0 = page 1 affichée)
+export let pageIndex = 0; // 👈 interne (0 = page 1 affichée)
 
+export const readPageButton = (nbCardPerPage: number): void => {
   const previousPageButton = document.getElementById("previousPageButton");
   const nextPageButton = document.getElementById("nextPageButton");
 
@@ -38,20 +39,25 @@ export const readPageButton = (nbCardPerPage: number): void => {
   displayButton(pageIndex);
 };
 
-const displayButton = (pageIndex: number): void => {
+export const displayButton = (pageIndex: number): void => {
   const previousPage = document.getElementById("previousPageButton");
   const pageMinus2 = document.getElementById("page-2");
   const pageMinus1 = document.getElementById("page-1");
+  const pagePlus2 = document.getElementById("page+2");
+  const pagePlus1 = document.getElementById("page+1");
   const returnPpage = document.getElementById("return-page-1");
+  const btnNextPage = document.getElementById("nextPageButton");
 
-  if (!previousPage || !pageMinus2 || !pageMinus1 || !returnPpage) return;
-
-  // Affichage boutons précédent
-  previousPage.style.display = pageIndex > 0 ? "" : "none";
-  pageMinus1.style.display = pageIndex > 0 ? "" : "none";
-  pageMinus2.style.display = pageIndex > 1 ? "" : "none";
-  pageMinus2.style.display = pageIndex > 1 ? "" : "none";
-  returnPpage.style.display = pageIndex > 2 ? "" : "none";
+  if (
+    !previousPage ||
+    !pageMinus2 ||
+    !pageMinus1 ||
+    !returnPpage ||
+    !pagePlus1 ||
+    !pagePlus2 ||
+    !btnNextPage
+  )
+    return;
 
   const buttons = [
     document.getElementById("page-2"),
@@ -68,6 +74,15 @@ const displayButton = (pageIndex: number): void => {
     button.textContent = displayPage > 0 ? String(displayPage) : "";
     button.style.display = displayPage > 0 ? "" : "none";
   });
+
+  // Affichage boutons précédent
+  previousPage.style.display = pageIndex > 0 ? "" : "none";
+  pageMinus1.style.display = pageIndex > 0 ? "" : "none";
+  pageMinus2.style.display = pageIndex > 1 ? "" : "none";
+  returnPpage.style.display = pageIndex > 2 ? "" : "none";
+  pagePlus1.style.display = pageIndex < nbPage - 1 ? "" : "none";
+  pagePlus2.style.display = pageIndex < nbPage - 2 ? "" : "none";
+  btnNextPage.style.display = pageIndex < nbPage - 1 ? "" : "none";
 };
 
 const goToPage = (
@@ -86,8 +101,8 @@ const goToPage = (
       if (isNaN(displayPage) || displayPage <= 0) return;
 
       const pageIndex = displayPage - 1; // 👈 conversion UI → logique
-
-      await addCard(nbCardPerPage, pageIndex);
+      console.log(reserchText);
+      await addCard(nbCardPerPage, pageIndex, reserchText);
       updatePage(pageIndex);
       displayButton(pageIndex);
     });
@@ -96,7 +111,7 @@ const goToPage = (
   document
     .getElementById("return-page-1")
     ?.addEventListener("click", async () => {
-      await addCard(nbCardPerPage, 0);
+      await addCard(nbCardPerPage, 0, reserchText);
       updatePage(0);
       displayButton(0);
     });

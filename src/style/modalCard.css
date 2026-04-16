@@ -1,0 +1,153 @@
+/* ── Overlay ─────────────────────────────────────────────── */
+#modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+
+  /* Fond sombre flou qui assombrit tout le reste */
+  background: rgba(10, 14, 35, 0.72);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+
+  /* Caché par défaut */
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+#modal-overlay.modal-visible {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* ── Carte modale ─────────────────────────────────────────── */
+#modal-box {
+  position: relative;
+  background: var(--surface);
+  border-radius: calc(var(--radius) * 1.5);
+  box-shadow:
+    0 8px 40px rgba(0, 0, 0, 0.35),
+    0 0 0 1px rgba(255, 255, 255, 0.06);
+  border-top: 5px solid var(--primary);
+
+  width: 100%;
+  max-width: 680px;
+  max-height: 85vh;
+  overflow-y: auto;
+
+  /* Animation d'apparition */
+  transform: translateY(24px) scale(0.97);
+  transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+#modal-overlay.modal-visible #modal-box {
+  transform: translateY(0) scale(1);
+}
+
+/* ── Contenu ──────────────────────────────────────────────── */
+.modal-content {
+  padding: 2rem 2.25rem 2.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* ── Badge catégorie ──────────────────────────────────────── */
+.modal-badge {
+  display: inline-block;
+  background: var(--primary);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-radius: 20px;
+  padding: 0.25rem 0.75rem;
+  align-self: flex-start;
+}
+
+/* ── Titre ────────────────────────────────────────────────── */
+.modal-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.35;
+}
+
+/* ── Méta (lieu, date, contact…) ──────────────────────────── */
+.modal-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  padding: 0.9rem 1rem;
+  background: var(--bg);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+}
+
+.modal-meta-item {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+/* ── Corps ────────────────────────────────────────────────── */
+.modal-corp {
+  font-size: 0.92rem;
+  color: var(--text);
+  line-height: 1.75;
+  white-space: pre-line;
+}
+
+/* ── Lien externe ─────────────────────────────────────────── */
+.modal-link {
+  align-self: flex-start;
+  text-decoration: none;
+  font-size: 0.88rem;
+}
+
+/* ── Bouton fermer ────────────────────────────────────────── */
+.modal-close {
+  position: absolute;
+  top: 0.9rem;
+  right: 0.9rem;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  border: 1.5px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    background 0.15s,
+    color 0.15s,
+    border-color 0.15s;
+  line-height: 1;
+}
+
+.modal-close:hover {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+}
+
+/* ── Scrollbar dans la modale ─────────────────────────────── */
+#modal-box::-webkit-scrollbar {
+  width: 5px;
+}
+#modal-box::-webkit-scrollbar-track {
+  background: transparent;
+}
+#modal-box::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 99px;
+}

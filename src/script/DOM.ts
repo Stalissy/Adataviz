@@ -6,6 +6,10 @@ export const DOM = (id: string) => {
       <h3>Site sur l'actualité Parisienne</h3>
     </header>
     <main id="main">
+      <div class="search-wrapper">
+        <label for="search">Recherche</label>
+        <input type="search" id="search">
+      </div>
       <div id="article"></div>
       <div id="buttonPage">
         <div class="pagination">

@@ -3,6 +3,8 @@
 @import "./card.css";
 @import "./button.css";
 @import "./footer.css";
+@import "./searchBar.css";
+@import "./modalCard.css";
 
 * {
   margin: 0;

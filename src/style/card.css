@@ -36,3 +36,11 @@
   margin-top: auto;
   align-self: center;
 }
+
+.absolute {
+  position: absolute;
+}
+
+#no_result {
+  align-text: center;
+}
